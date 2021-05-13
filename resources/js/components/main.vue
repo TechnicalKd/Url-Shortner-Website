@@ -2,7 +2,8 @@
    <div>
    		<app-header></app-header>
            <div class="min-h-screen">
-                        <index/>
+                    <!-- <index/> -->
+                    <router-view></router-view>
                  </div>
    		<app-footer></app-footer>
 

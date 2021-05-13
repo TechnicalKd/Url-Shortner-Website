@@ -1,0 +1,51 @@
+<template>
+  <div class="py-10 flex flex-wrap justify-center">
+    <h1 class="text-3xl w-full  text-center"> Register Page</h1>
+      <div class="text-center  border rounded">
+          <form class="flex flex-wrap " @submit.prevent="submit">
+          <div class="py-2 w-full ">
+                 <input type="text" v-model="form.name"  class="p-3 border rounded-sm shadow-md w-72"   placeholder="Your Awsome Name">
+        </div>
+        <div class="py-2 w-full ">
+                 <input type="email" v-model="form.email"  class="p-3 border rounded-sm shadow-md w-72"   placeholder="Your Awsome Email">
+        </div>
+        <div class="py-2 w-full ">
+                    <input type="password"  v-model="form.password" class="p-3 border rounded-sm shadow-md w-72"  placeholder="Your Awsome Passwordl">
+        </div>
+
+        <div class="py-2 w-full ">
+                    <input type="password"  v-model="form.password_confirmation" class="p-3 border rounded-sm shadow-md w-72"  placeholder="Your confirmation Passwordl">
+        </div>
+
+        <div class="py-2 w-full ">
+                <input type="submit" value="login" class="text-white w-1/2  bg-blue-500"></input>
+         </div>
+    </form>
+      </div>
+    </div>
+</template>
+<script>
+  export default { 
+      middleware : "guest",
+      data(){
+          return { 
+              form : { 
+                  email : "",
+                  password : "",
+                  name :"",
+                  password_confirmation :""
+              }
+          }
+       },
+       methods  : { 
+           submit(){
+             this.$http.post("/register",this.form)
+               .then(response=>{ 
+                  window.location = '/'
+                })
+            }
+       } 
+  }
+</script>
+
+

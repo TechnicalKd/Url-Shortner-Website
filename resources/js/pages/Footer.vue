@@ -1,7 +1,7 @@
 <template>
    <div>
   <footer class="bg-red-600 p-4 text-white text-xl text-center">
-Copyright KDTECH
+Copyright KDTECH SOFTWARE SOLUTION PVT. LTD
   </footer>
    </div>
 </template>

@@ -6,6 +6,10 @@ use App\Url;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests\UrlRequest;
+use Auth;
+use DB;
+
+
 
 
 class UrlController extends Controller
@@ -17,7 +21,8 @@ class UrlController extends Controller
      */
     public function index()
     {
-        return Url::latest()->get();
+        return DB::table('urls')->join('users','urls.user_id','users.id')->select('urls.*','users.name')->where('user_id',Auth::user()->id)->get();
+    
     }
 
     /**
@@ -30,16 +35,16 @@ class UrlController extends Controller
         //
     }
 
-    
+
 
     public function store(UrlRequest $request){
         $url  = Url::create($request->all());
-        return response($url ,Response::HTTP_CREATED);   
+        return response($url ,Response::HTTP_CREATED);
     }
 
-    
+
     public function show(Url $url)
-    {   
+    {
         $url->increment('visits');
         return redirect($url->original_url);
     }
